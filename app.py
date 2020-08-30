@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template, redirect, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -12,10 +12,17 @@ APP.config['MONGO_DBNAME'] = os.environ.get("MONGO_DBNAME")
 APP.config['MONGO_URI'] = os.environ.get("MONGO_URI")
 APP.secret_key = os.environ.get("SECRET_KEY")
 
+MONGO = PyMongo(APP)
+
 
 @APP.route('/')
-def index():
-    return "Hello, world"
+@APP.route('/get_tasks')
+def get_tasks():
+    """Display the Task Manager page"""
+
+    tasks = MONGO.db.tasks.find()
+
+    return render_template('index.html', tasks=tasks)
 
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
