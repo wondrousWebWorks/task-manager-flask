@@ -20,7 +20,7 @@ MONGO = PyMongo(APP)
 @APP.route('/get_tasks')
 def get_tasks():
     """Display the Task Manager page"""
-    tasks = MONGO.db.tasks.find()
+    tasks = list(MONGO.db.tasks.find())
     return render_template('tasks.html', tasks=tasks)
 
 
