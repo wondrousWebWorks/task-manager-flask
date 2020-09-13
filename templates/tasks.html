@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+        {% for task in tasks %}
+            <ul>
+                <li>{{ task.category_name }}</li>
+                <li>{{ task.task_name }}</li>
+                <li>{{ task.task_description }}</li>
+                <li>{{ task.is_urgent }}</li>
+                <li>{{ task.due_date }}</li>
+            </ul>
+        {% endfor %}
+
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>First</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>Second</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>Third</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+        </ul>
+    {% endblock %}

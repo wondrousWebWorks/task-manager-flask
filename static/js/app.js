@@ -3,4 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Sidenav.init(elems, {
         edge: 'right'
     });
+
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems);
 });
