@@ -99,7 +99,8 @@ def logout():
 
 @APP.route('/add_task')
 def add_task():
-    return render_template('add_task.html')
+    categories = MONGO.db.categories.find().sort('category_name', 1)
+    return render_template('add_task.html', categories=categories)
 
 
 if __name__ == '__main__':
