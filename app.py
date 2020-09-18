@@ -112,9 +112,17 @@ def add_task():
         MONGO.db.tasks.insert_one(task)
         flash('Task Successfully Added')
         return redirect(url_for('get_tasks'))
-        
+
     categories = MONGO.db.categories.find().sort('category_name', 1)
     return render_template('add_task.html', categories=categories)
+
+
+@APP.route('/edit_task/<task_id>', methods=['GET', 'POST'])
+def edit_task(task_id):
+    task = MONGO.db.task.find_one({'_id': ObjectId(task_id)})
+
+    categories = MONGO.db.categories.find().sort('category_name', 1)
+    return render_template('edit_task.html', task=task, categories=categories)
 
 
 if __name__ == '__main__':
