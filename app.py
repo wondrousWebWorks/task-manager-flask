@@ -117,12 +117,11 @@ def add_task():
     return render_template('add_task.html', categories=categories)
 
 
-@APP.route('/edit_task/<task_id>', methods=['GET', 'POST'])
+@APP.route("/edit_task/<task_id>", methods=["GET", "POST"])
 def edit_task(task_id):
-    task = MONGO.db.task.find_one({'_id': ObjectId(task_id)})
-
-    categories = MONGO.db.categories.find().sort('category_name', 1)
-    return render_template('edit_task.html', task=task, categories=categories)
+    task = MONGO.db.tasks.find_one({"_id": ObjectId(task_id)})
+    categories = MONGO.db.categories.find().sort("category_name", 1)
+    return render_template("edit_task.html", task=task, categories=categories)
 
 
 if __name__ == '__main__':
