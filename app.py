@@ -144,6 +144,13 @@ def delete_task(task_id):
     return redirect(url_for('get_tasks'))
 
 
+@APP.route('/get_categories')
+def get_categories():
+    categories = list(MONGO.db.categories.find().sort('category_name', 1))
+    return render_template('categories.html', categories=categories)
+
+
+
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
             port=os.environ.get('PORT'),
