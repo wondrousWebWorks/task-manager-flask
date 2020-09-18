@@ -137,6 +137,13 @@ def edit_task(task_id):
     return render_template("edit_task.html", task=task, categories=categories)
 
 
+@APP.route('/delete_task/<task_id>')
+def delete_task(task_id):
+    MONGO.db.tasks.remove({'_id': ObjectId(task_id)})
+    flash('Task Successfully Deleted')
+    return redirect(url_for('get_tasks'))
+
+
 if __name__ == '__main__':
     APP.run(host=os.environ.get('IP'),
             port=os.environ.get('PORT'),
