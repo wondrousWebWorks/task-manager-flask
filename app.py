@@ -24,6 +24,13 @@ def get_tasks():
     return render_template('tasks.html', tasks=tasks)
 
 
+@APP.route('/search', methods=['GET', 'POST'])
+def search():
+    query = request.form.get('query')
+    tasks = list(MONGO.db.tasks.find({'$text': {'$search': query}}))
+    return render_template('tasks.html', tasks=tasks)
+
+
 @APP.route('/register', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
